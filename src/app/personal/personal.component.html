@@ -1,0 +1,29 @@
+
+
+<div style="width: 80%;height:90%;margin:0 auto;margin-top: 80px;background-color: #F3F5FA;">
+  <div style="margin:0 auto;width: 200px;height: 200px;">
+      <form [formGroup]="student" (ngSubmit)="onSubmit(student.value)">
+      <div>
+        <label>学生号：</label><br>
+        <input type="text" formControlName="Sno" required readonly>
+      </div>  
+      <div>
+        <label>学生姓名：</label><br>
+        <input type="text" formControlName="Sname" required>
+      </div>
+      <div>
+        <label>学生性别：</label><br>
+        <input type="text" formControlName="Ssex" required>
+      </div>
+      <div>
+        <label>学生年龄：</label><br>
+        <input type="text" formControlName="Sage" required>
+      </div>
+      <div>
+        <label>学生密码：</label><br>
+        <input type="text" formControlName="Password" required>
+      </div>
+      <button nz-button nzType="primary" class="button" type="submit">修改</button>
+    </form>
+  </div>
+</div>

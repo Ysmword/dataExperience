@@ -1,0 +1,17 @@
+<div style="width: 100%;height:47px;" *ngIf="IsSign">
+  <div style="float: left" *ngIf="IsSign">
+      <ul nz-menu [nzMode]="'horizontal'" >
+          <li *ngIf="studentM" nz-menu-item routerLink="/student"><i nz-icon type="mail"></i> 学生管理</li>
+          <li *ngIf="teacherM" nz-menu-item routerLink="/teacher"><i nz-icon type="appstore"></i> 教师管理</li>
+          <li *ngIf="courseM" nz-menu-item routerLink="/course"><i nz-icon type="appstore"></i>课程管理</li>
+          <li  nz-menu-item  routerLink="/elective"><i nz-icon type="appstore"></i> 选修管理</li>
+          <li *ngIf="statics" nz-menu-item routerLink="/statics"><i nz-icon type="appstore"></i> 统计报表</li>
+          <li *ngIf="person" nz-menu-item routerLink="/person"><i nz-icon type="appstore"></i> 个人中心</li>
+        </ul>
+  </div>
+
+  <div style="float:right" *ngIf="IsSign">
+      <!-- <button nz-button nzType="primary" class="button" (click)="sign()">登录</button> -->
+      <button nz-button nzType="primary" class="button" type="submit" (click)="cancel()">注销</button>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div style="width: 80%;height:90%;margin:0 auto;margin-top: 80px;background-color: #F3F5FA;">
+  <nz-tabset>
+    <nz-tab nzTitle="课程信息">
+      <nz-table #basicTable1 [nzData]="listOfData3">
+        <thead>
+          <tr>
+            <th>课程编号</th>
+            <th>课程名称</th>
+            <th>任课老师</th>
+            <th>课程学分</th>
+            <th>选修人数</th>
+            <th>平均分</th>
+            <th>最高分</th>
+            <th>最低分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable1.data">
+            <td>{{ data.Cno }}</td>
+            <td>{{ data.Cname }}</td>
+            <td>{{ data.Sname }}</td>
+            <td>{{ data.Credit }}</td>
+            <td>{{ data.Counte }}</td>
+            <td>{{ data.Avgrade }}</td>
+            <td>{{ data.Maxgrade }}</td>
+            <td>{{ data.Mingrade }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+    <nz-tab nzTitle="学生成绩信息">
+      <nz-table #basicTable2 [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>学生学号</th>
+            <th>学生姓名</th>
+            <th>总分</th>
+            <th>总学分</th>
+            <th>最高分</th>
+            <th>最低分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable2.data">
+            <td>{{ data.Sno }}</td>
+            <td>{{ data.Sname }}</td>
+            <td>{{ data.Sum }}</td>
+            <td>{{ data.SumCredit }}</td>
+            <td>{{ data.Max }}</td>
+            <td>{{ data.Min }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+    <nz-tab nzTitle="教师职务信息">
+      <nz-table #basicTable3 [nzData]="listOfData1">
+        <thead>
+          <tr>
+            <th>职务</th>
+            <th>任职人数</th>
+            <th>平均工资</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable3.data">
+            <td>{{ data.Title }}</td>
+            <td>{{ data.Count }}</td>
+            <td>{{ data.Avg }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+  </nz-tabset>
+</div>
+

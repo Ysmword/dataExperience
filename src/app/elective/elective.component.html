@@ -1,0 +1,55 @@
+<div *ngIf="IsStudent" style="width: 80%;height:90%;margin:0 auto;margin-top: 80px;background-color: #F3F5FA;">
+    <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>课程号</th>
+            <th>课程名称</th>
+            <th>学分</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.Cno }}</td>
+            <td>{{ data.Cname }}</td>
+            <td>{{ data.Credit }}</td>
+            <td>
+              <a (click)="Add(data)">添加&nbsp;</a>
+              <a nz-popconfirm nzTitle="是否确认移出?" (nzOnConfirm)="deleteStudentCourse(data)" (nzOnCancel)="cancel()" nzTop="60px">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
+
+<div *ngIf="IsAdmin" style="width: 80%;height:90%;margin:0 auto;margin-top: 80px;background-color: #F3F5FA;">
+    <nz-table #editRowTable nzBordered [nzData]="listOfData">
+      <thead>
+        <tr>
+          <th nzWidth="30%">课程</th>
+          <th>学生</th>
+          <th>分数</th>
+          <th>确定</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of editRowTable.data" class="editable-row">
+          <td>{{ data.Cname }}</td>
+          <td>{{ data.Sno }}</td>
+          <td>
+              <div class="editable-cell" *ngIf="editId !== data.id; else editTpl">
+                <div class="editable-cell-value-wrap" (click)="startEdit(data.id, $event)">
+                  {{ data.Grade }}
+                </div>
+              </div>
+              <ng-template #editTpl>
+                <input type="text" nz-input [(ngModel)]="data.Grade" />
+              </ng-template>
+            </td>
+          <td>
+            <a nz-popconfirm nzTitle="Sure to delete?" (nzOnConfirm)="modifySC(data)">确定修改</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+</div>

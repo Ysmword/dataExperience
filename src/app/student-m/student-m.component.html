@@ -1,0 +1,129 @@
+
+<div style="width: 80%;height:90%;margin:0 auto;margin-top: 80px;background-color: #F3F5FA;">
+  <div>
+    <div style="float: left">
+      <button nz-button (click)="addStudent()" nzType="primary">添加</button>
+    </div>
+    <div style="float: right">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+            <input type="text" [formControl]="studnetNumber" nz-input placeholder="请输入学号" />
+          </nz-input-group>
+          <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSize="large" nzSearch (click)="Search()">Search</button>
+          </ng-template>
+    </div>
+  </div>
+  <div style="clear: both"></div>
+      <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>学生学号</th>
+            <th>学生姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>密码</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.Sno }}</td>
+            <td>{{ data.Sname }}</td>
+            <td>{{ data.Ssex }}</td>
+            <td>{{ data.Sage }}</td>
+            <td>{{ data.Password }}</td>
+            <td>
+              <a (click)="showModal(data)">修改&nbsp;</a>
+              <nz-modal [(nzVisible)]="isVisible" nzTitle="student" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                  <div [formGroup]="student">
+                      <label>
+                        Sno:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" formControlName="Sno" readonly placeholder="{{ data.Sno }}">
+                      </label>
+                      <br>
+                      <label>
+                        Sname:  &nbsp;&nbsp;&nbsp;
+                        <input type="text" formControlName="Sname" required placeholder="{{ data.Sname }}"> 
+                      </label>
+                      <br>
+                      <label>
+                        Ssex:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" formControlName="Ssex" required placeholder="{{ data.Ssex }}">
+                      </label>
+                      <br>
+                      <label>
+                        Sage: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" formControlName="Sage" required placeholder="{{ data.Sage }}">
+                      </label>
+                      <br>
+                      <label>
+                          Password:
+                          <input type="text" formControlName="Password" required placeholder="{{ data.Password }}" value="{{ data.Password }}">
+                        </label>
+                    </div>
+              </nz-modal>
+              <a nz-popconfirm nzTitle="是否确认移出?" (nzOnConfirm)="deleteStudent(data)" (nzOnCancel)="cancel()" nzTop="60px">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>
+
+
+<nz-modal [(nzVisible)]="aIsvisible" nzTitle="student" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="handleOka()" (nzOnCancel)="handleCancela()">
+    <div [formGroup]="addstudent">
+        <label>
+          Sno:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Sno" required placeholder="请输入学号">
+        </label>
+        <br>
+        <label>
+          Sname:  &nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Sname" required placeholder="请输入姓名"> 
+        </label>
+        <br>
+        <label>
+          Ssex:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Ssex" required placeholder="请输入性别">
+        </label>
+        <br>
+        <label>
+          Sage: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Sage" required placeholder="请输入年龄">
+        </label>
+        <br>
+        <label>
+            Password:
+            <input type="text" formControlName="Password" required placeholder="请输入密码">
+          </label>
+      </div>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="sisVisible" nzTitle="student" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="handleOks()" (nzOnCancel)="handleCancels()">
+    <div [formGroup]="Searchstudent">
+        <label>
+          Sno:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Sno" readonly>
+        </label>
+        <br>
+        <label>
+          Sname:  &nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Sname" readonly > 
+        </label>
+        <br>
+        <label>
+          Ssex:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Ssex" readonly >
+        </label>
+        <br>
+        <label>
+          Sage: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" formControlName="Sage" readonly>
+        </label>
+        <br>
+        <label>
+            Password:
+            <input type="text" formControlName="Password" readonly placeholder="请输入密码">
+          </label>
+      </div>
+</nz-modal>
